@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, Input, TemplateRef } from '@angular/core';
+import { BsModalRef,BsModalService } from 'ngx-bootstrap/modal';
 
 import { keyboardCapsLockLayout, KeyboardLayout } from './layouts';
 import { VirtualKeyboardService } from './virtual-keyboard.service';
@@ -10,21 +10,19 @@ import { KeyPressInterface } from './key-press.interface';
   template: `
     <div class="container">
       <div fxLayout="column">
-        <mat-form-field>
+        <div class="bmd-label-floating">
           <button class="close" color="primary" mat-button mat-mini-fab
             (click)="close()"
-          >
-            <mat-icon>check</mat-icon>
+          <span> 
           </button>
     
           <input type="{{type}}"
-            matInput
             #keyboardInput
             (click)="updateCaretPosition()"
             [(ngModel)]="inputElement.nativeElement.value" placeholder="{{ placeholder }}"
             [maxLength]="maxLength"
           />
-        </mat-form-field>
+        </div>
     
         <div fxLayout="row" fxLayoutAlign="center center"
           *ngFor="let row of layout; let rowIndex = index"
@@ -55,7 +53,7 @@ import { KeyPressInterface } from './key-press.interface';
       font-size: 32px;
     }
   
-    .mat-input-element:disabled {
+    input:disabled {
       color: currentColor;
     }
 
@@ -75,6 +73,9 @@ export class VirtualKeyboardComponent implements OnInit, OnDestroy {
   public type: string;
   public disabled: boolean;
   public maxLength: number|string;
+
+  @Input() iconClass : string;
+  private modal: BsModalRef;
 
   private caretPosition: number;
   private shift = false;
@@ -108,11 +109,11 @@ export class VirtualKeyboardComponent implements OnInit, OnDestroy {
   /**
    * Constructor of the class.
    *
-   * @param {MatDialogRef<VirtualKeyboardComponent>} dialogRef
+   * @param {TemplateRef<VirtualKeyboardComponent>} dialogRef
    * @param {VirtualKeyboardService}                 virtualKeyboardService
    */
   public constructor(
-    public dialogRef: MatDialogRef<VirtualKeyboardComponent>,
+    public dialogRef: TemplateRef<VirtualKeyboardComponent>,
     private virtualKeyboardService: VirtualKeyboardService
   ) { }
 
@@ -168,8 +169,8 @@ export class VirtualKeyboardComponent implements OnInit, OnDestroy {
    * Method to close virtual keyboard dialog
    */
   public close(): void {
-    this.dialogRef.close();
-  }
+    this.modal.hide();
+    }
 
   /**
    * Method to update caret position. This is called on click event in virtual keyboard input element.
@@ -275,6 +276,8 @@ export class VirtualKeyboardComponent implements OnInit, OnDestroy {
           }
         } else {
           this.inputElement.nativeElement.value = currentValue.substring(0, currentValue.length - 1);
+          // discpatcing backspace requires for some reason custom handling
+          this.dispatchEvents(event);
         }
 
         // Set focus to keyboard input

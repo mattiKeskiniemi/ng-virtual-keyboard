@@ -1,5 +1,4 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Directive, ElementRef, HostListener, Input,TemplateRef } from '@angular/core';
 
 import { VirtualKeyboardComponent } from './virtual-keyboard.component';
 import {
@@ -11,6 +10,8 @@ import {
   numericKeyboard,
   phoneKeyboard
 } from './layouts';
+
+
 
 @Directive({
   selector: '[ng-virtual-keyboard]'
@@ -50,11 +51,10 @@ export class NgVirtualKeyboardDirective {
    * Constructor of the class.
    *
    * @param {ElementRef}  element
-   * @param {MatDialog}    dialog
+   * 
    */
   public constructor(
-    private element: ElementRef,
-    private dialog: MatDialog,
+    private element: ElementRef
   ) { }
 
   /**
@@ -63,10 +63,12 @@ export class NgVirtualKeyboardDirective {
   private openKeyboard() {
     if (!this.opened && this.focus) {
       this.opened = true;
+ /* 
+      let dialogRef: TemplateRef<VirtualKeyboardComponent>;
 
-      let dialogRef: MatDialogRef<VirtualKeyboardComponent>;
-
-      dialogRef = this.dialog.open(VirtualKeyboardComponent);
+       this.modalService.show(dialogRef);
+        
+     
       dialogRef.componentInstance.inputElement = this.element;
       dialogRef.componentInstance.layout = this.getLayout();
       dialogRef.componentInstance.placeholder = this.getPlaceHolder();
@@ -80,7 +82,9 @@ export class NgVirtualKeyboardDirective {
           }, 0);
         });
     }
+    */
   }
+}
 
   /**
    * Getter for used keyboard layout.

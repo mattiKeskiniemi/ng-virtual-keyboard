@@ -9,11 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import 'hammerjs';
-import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 //noinspection TypeScriptCheckImport
 import { NgVirtualKeyboardModule }  from '@protacon/ng-virtual-keyboard';
@@ -25,7 +23,6 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatInputModule,
     FlexLayoutModule,
     NgVirtualKeyboardModule,
   ],

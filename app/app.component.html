@@ -95,40 +95,40 @@ export class AppModule {{ '{' }} {{ '}' }}</code></pre>
         <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-around center">
           <strong class="text-right" fxFlex="180px">{{ layout.name }}</strong>
 
-          <mat-form-field fxFlex="150px">
+          <div fxFlex="150px">
             <input value=""
               matInput
               ng-virtual-keyboard
               [ng-virtual-keyboard-layout]="layout.layout"
             />
-          </mat-form-field>
+          </div>
 
-          <mat-form-field fxFlex="150px">
+          <div fxFlex="150px">
             <input value="" placeholder="{{ layout.placeholder }}"
               matInput
               ng-virtual-keyboard
               [ng-virtual-keyboard-layout]="layout.layout"
             />
-          </mat-form-field>
+          </div>
 
-          <mat-form-field fxFlex="150px">
+          <div fxFlex="150px">
             <input value="" placeholder="{{ layout.placeholder }}"
               matInput
               ng-virtual-keyboard
               [ng-virtual-keyboard-layout]="layout.layout"
               [ng-virtual-keyboard-placeholder]="layout.placeholderCustom"
             />
-          </mat-form-field>
+          </div>
 
-          <mat-form-field fxFlex="150px">
+          <div fxFlex="150px">
             <input value="" placeholder="With maxlength=5" maxlength="5"
               matInput
               ng-virtual-keyboard
               [ng-virtual-keyboard-layout]="layout.layout"
             />
-          </mat-form-field>
+          </div>
 
-          <mat-form-field fxFlex="150px">
+          <div fxFlex="150px">
             <input value="" placeholder="Type input Password"
               type="password" 
               matInput
@@ -136,32 +136,32 @@ export class AppModule {{ '{' }} {{ '}' }}</code></pre>
               ng-virtual-keyboard-type="password"
               [ng-virtual-keyboard-layout]="layout.layout"
             />
-          </mat-form-field>
+          </div>
         </div>
       </div>
 
       <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-around center">
         <strong class="text-right" fxFlex="180px">Custom Layout</strong>
 
-        <mat-form-field fxFlex>
+        <div fxFlex>
           <input value="" placeholder="Keyboard with custom layout"
             matInput
             ng-virtual-keyboard
             [ng-virtual-keyboard-layout]="customLayout"
           />
-        </mat-form-field>
+        </div>
       </div>
 
       <div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-around start">
         <strong class="text-right" fxFlex="180px">Custom layout definition</strong>
 
-        <mat-form-field fxFlex>
+        <div fxFlex>
           <textarea matInput [(ngModel)]="customLayoutValue" rows="10"></textarea>
 
-          <mat-hint *ngIf="invalid">
+          <span *ngIf="invalid">
             Given layout is not valid JSON - use <code>Array&lt;Array&lt;string&gt;&gt;</code> format
-          </mat-hint>
-        </mat-form-field>
+          </span>
+        </div>
       </div>
     </div>
   </div>

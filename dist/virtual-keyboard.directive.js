@@ -1,19 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var material_1 = require("@angular/material");
-var virtual_keyboard_component_1 = require("./virtual-keyboard.component");
 var layouts_1 = require("./layouts");
 var NgVirtualKeyboardDirective = /** @class */ (function () {
     /**
      * Constructor of the class.
      *
      * @param {ElementRef}  element
-     * @param {MatDialog}    dialog
+     *
      */
-    function NgVirtualKeyboardDirective(element, dialog) {
+    function NgVirtualKeyboardDirective(element) {
         this.element = element;
-        this.dialog = dialog;
         this.opened = false;
         this.focus = true;
     }
@@ -36,22 +33,28 @@ var NgVirtualKeyboardDirective = /** @class */ (function () {
      * Method to open virtual keyboard
      */
     NgVirtualKeyboardDirective.prototype.openKeyboard = function () {
-        var _this = this;
         if (!this.opened && this.focus) {
             this.opened = true;
-            var dialogRef = void 0;
-            dialogRef = this.dialog.open(virtual_keyboard_component_1.VirtualKeyboardComponent);
-            dialogRef.componentInstance.inputElement = this.element;
-            dialogRef.componentInstance.layout = this.getLayout();
-            dialogRef.componentInstance.placeholder = this.getPlaceHolder();
-            dialogRef.componentInstance.type = this.getType();
-            dialogRef
-                .afterClosed()
-                .subscribe(function () {
-                setTimeout(function () {
-                    _this.opened = false;
-                }, 0);
-            });
+            /*
+                 let dialogRef: TemplateRef<VirtualKeyboardComponent>;
+           
+                  this.modalService.show(dialogRef);
+                   
+                
+                 dialogRef.componentInstance.inputElement = this.element;
+                 dialogRef.componentInstance.layout = this.getLayout();
+                 dialogRef.componentInstance.placeholder = this.getPlaceHolder();
+                 dialogRef.componentInstance.type = this.getType();
+           
+                 dialogRef
+                   .afterClosed()
+                   .subscribe(() => {
+                     setTimeout(() => {
+                       this.opened = false;
+                     }, 0);
+                   });
+               }
+               */
         }
     };
     /**
@@ -109,8 +112,7 @@ var NgVirtualKeyboardDirective = /** @class */ (function () {
     ];
     /** @nocollapse */
     NgVirtualKeyboardDirective.ctorParameters = function () { return [
-        { type: core_1.ElementRef },
-        { type: material_1.MatDialog }
+        { type: core_1.ElementRef }
     ]; };
     NgVirtualKeyboardDirective.propDecorators = {
         layout: [{ type: core_1.Input, args: ['ng-virtual-keyboard-layout',] }],

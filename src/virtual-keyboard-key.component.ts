@@ -7,7 +7,6 @@ import { isSpacer, isSpecial, notDisabledSpecialKeys, specialKeyIcons, specialKe
   selector: 'virtual-keyboard-key',
   template: `
     <button
-      mat-raised-button
       color="primary"
       fxFlex="{{ flexValue }}"
       [class.spacer]="spacer"
@@ -17,30 +16,13 @@ import { isSpacer, isSpecial, notDisabledSpecialKeys, specialKeyIcons, specialKe
       <span *ngIf="!special">{{ keyValue }}</span>
     
       <span *ngIf="special">
-        <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+        <span  *ngIf="icon">{{ icon }}</span>
     
         {{ text }}
       </span>
     </button>
   `,
-  styles: [`
-    .mat-button,
-    .mat-icon-button,
-    .mat-raised-button {
-      min-width: 64px;
-      min-height: 64px;
-      padding: 0;
-      margin: 2px;
-      font-size: 32px;
-      line-height: 32px;
-    }
-    
-    .mat-button.spacer,
-    .mat-icon-button.spacer,
-    .mat-raised-button.spacer {
-      background-color: transparent;
-    }
-  `]
+  styles: [`./button-styles.scss`]
 })
 
 export class VirtualKeyboardKeyComponent implements OnInit {

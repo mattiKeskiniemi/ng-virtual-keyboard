@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
-var material_1 = require("@angular/material");
 var flex_layout_1 = require("@angular/flex-layout");
+var modal_1 = require("ngx-bootstrap/modal");
 var virtual_keyboard_directive_1 = require("./virtual-keyboard.directive");
 var virtual_keyboard_component_1 = require("./virtual-keyboard.component");
 var virtual_keyboard_key_component_1 = require("./virtual-keyboard-key.component");
@@ -27,10 +27,7 @@ var NgVirtualKeyboardModule = /** @class */ (function () {
                         forms_1.FormsModule,
                         forms_1.ReactiveFormsModule,
                         flex_layout_1.FlexLayoutModule,
-                        material_1.MatButtonModule,
-                        material_1.MatDialogModule,
-                        material_1.MatIconModule,
-                        material_1.MatInputModule,
+                        modal_1.ModalModule
                     ],
                     entryComponents: [
                         virtual_keyboard_component_1.VirtualKeyboardComponent,
